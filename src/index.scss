@@ -45,3 +45,24 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
+
+// style overrides for react-switch-selector
+.react-switch-selector-option-label {
+  background-color: #fff !important;
+}
+
+.react-switch-selector-option-selected {
+  .react-switch-selector-option-label {
+    border-bottom: 2px solid #131e22 !important;
+  }
+}
+
+.react-switch-selector-option-unselected {
+  .react-switch-selector-option-label {
+    border-bottom: 2px solid #fff !important;
+  }
+}
+
+.react-switch-selector-wrapper {
+  border-radius: 0px !important;
+}
