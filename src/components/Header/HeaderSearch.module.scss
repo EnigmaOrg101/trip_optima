@@ -1,0 +1,28 @@
+.header__search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f4f5;
+  padding: 0 1rem;
+  border-radius: 1.5rem;
+  margin-left: 27rem;
+
+  input {
+    width: 38rem;
+    height: 5rem;
+    padding: 0 1rem;
+    border: none;
+    background-color: #f0f4f5;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 500;
+    outline: none;
+    border-radius: 1.5rem;
+
+    &::placeholder {
+      color: #333333b9;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+}
