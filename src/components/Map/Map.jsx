@@ -7,6 +7,7 @@ import MapButtons from './MapButtons'
 
 import useLocationStore from '../../store/locationStore'
 import useMarkerStore from '../../store/markerStore'
+import useMapStore from '../../store/mapStore'
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoibWFqaWhvIiwiYSI6ImNsaWg1ZmEyNTBxZjIzZm1wam51aGZ5YzEifQ.Sk1PZ3TrFEMIxSC4I9DBdA'
@@ -30,6 +31,8 @@ const MapLayout = () => {
 
   const marker = useMarkerStore((state) => state.marker)
 
+  const mapStyle = useMapStore((state) => state.mapStyle)
+
   useEffect(() => {
     // on mount get current location
     navigator.geolocation.watchPosition((success) => {
@@ -51,13 +54,14 @@ const MapLayout = () => {
           style={{
             borderRadius: '2rem',
           }}
+          projection={'globe'}
           ref={mapRef}
           initialViewState={{
             longitude: lnglat[0],
             latitude: lnglat[1],
             zoom: 14,
           }}
-          mapStyle="mapbox://styles/mapbox/streets-v12"
+          mapStyle={mapStyle}
           mapboxAccessToken={mapboxgl.accessToken}
           onLoad={(e) => {
             const geolocate = new mapboxgl.GeolocateControl({

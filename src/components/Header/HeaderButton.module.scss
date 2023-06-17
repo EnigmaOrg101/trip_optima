@@ -1,22 +1,3 @@
-.header__button {
-  all: unset;
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #050505;
-  color: #e4e4e4;
-  border-radius: 2rem;
-  width: 10rem;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  gap: 1rem;
-
-  &-icon {
-    transform: translateY(0.1rem);
-  }
-}
-
 .header__user {
   display: flex;
   align-items: center;
@@ -38,19 +19,10 @@
   }
 }
 
-.header__iconbtn {
-  all: unset;
-  font-size: 1.6rem;
+.header__select {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background-color: #f0f4f5;
-  padding: 1rem 1.5rem;
   border-radius: 0.8rem;
+  padding: 0 1rem;
 }
