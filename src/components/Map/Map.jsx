@@ -80,7 +80,7 @@ const MapLayout = () => {
             const { lng, lat } = e.lngLat
             console.log(lng, lat)
             setDestinationLocation([lng, lat])
-            // convert lnglat to address
+            // reverse geocoding through clicked coordinates
             fetch(
               `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=70982f5ded674a84abaa673ee6b6d2c7`
             )

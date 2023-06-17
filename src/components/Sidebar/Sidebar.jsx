@@ -1,6 +1,7 @@
 import classes from './Sidebar.module.scss'
 import SidebarHeader from './SidebarHeader'
 import SidebarInputLocation from './SidebarInputLocation'
+import SidebarRouteOptions from './SidebarRouteOptions'
 import SidebarSelect from './SidebarSelect'
 
 const Sidebar = () => {
@@ -9,6 +10,7 @@ const Sidebar = () => {
       <SidebarHeader />
       <SidebarInputLocation />
       <SidebarSelect />
+      <SidebarRouteOptions />
     </aside>
   )
 }
