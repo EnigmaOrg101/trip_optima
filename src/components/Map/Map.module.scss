@@ -1,8 +1,14 @@
 .map {
   padding: 2rem 4rem;
   flex: 1;
-  background-color: red;
 
   position: relative;
   box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.01);
+}
+
+.marker {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.12);
+  padding: 0.1rem;
 }
