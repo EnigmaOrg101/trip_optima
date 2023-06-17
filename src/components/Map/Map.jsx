@@ -43,6 +43,8 @@ const MapLayout = () => {
 
   const rushRadius = useRushStore((state) => state.rushRadius)
 
+  const rushParams = useRushStore((state) => state.rushParams)
+
   useEffect(() => {
     navigator.geolocation.watchPosition((success) => {
       const { latitude, longitude } = success.coords
@@ -57,12 +59,35 @@ const MapLayout = () => {
 
   useEffect(() => {
     if (rushMode) {
+      console.log(rushParams, rushRadius, currentLocation)
       fetch(
-        `https://api.geoapify.com/v1/isoline?lat=${currentLocation[1]}&lon=${currentLocation[0]}&type=distance&mode=drive&range=${rushRadius}&apiKey=${GEOAPIFY_API_KEY}`
+        `https://api.geoapify.com/v2/places?categories=${rushParams}&filter=circle:${currentLocation[0]},${currentLocation[1]},${rushRadius}&bias=proximity:${currentLocation[0]},${currentLocation[1]}&limit=8&apiKey=${GEOAPIFY_API_KEY}`
       )
         .then((res) => res.json())
         .then((data) => {
           console.log(data)
+          data.features.forEach((feature) => {
+            const { lat, lon } = feature.properties
+            const newMarker = new mapboxgl.Marker({
+              color: '#333',
+            })
+              .setLngLat([lon, lat])
+              .addTo(mapRef.current.getMap())
+            // add popup
+            newMarker.setPopup(
+              new mapboxgl.Popup().setHTML(
+                `<h3>${feature.properties.name}</h3><p>${feature.properties.formatted}</p>`
+              )
+            )
+          })
+        })
+        .catch((err) => console.log(err))
+
+      fetch(
+        `https://api.geoapify.com/v1/isoline?lat=${currentLocation[1]}&lon=${currentLocation[0]}&type=time&mode=drive&range=${rushRadius}&apiKey=${GEOAPIFY_API_KEY}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
           if (mapRef?.current?.getMap().getLayer('isoline-line')) {
             mapRef?.current?.getMap().removeLayer('isoline-line')
           }
@@ -76,7 +101,6 @@ const MapLayout = () => {
             type: 'geojson',
             data: data,
           })
-          // add layer of radius circle
           mapRef?.current.getMap().addLayer({
             id: 'isoline-line',
             type: 'line',
@@ -98,7 +122,7 @@ const MapLayout = () => {
         })
         .catch((err) => console.log(err))
     }
-  }, [rushMode, rushRadius])
+  }, [rushMode, rushRadius, rushParams])
 
   return (
     <div className={classes.map}>

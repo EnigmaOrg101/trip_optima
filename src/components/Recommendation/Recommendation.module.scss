@@ -1,0 +1,55 @@
+.recommendation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #131e22;
+    letter-spacing: -0.01rem;
+  }
+}
+
+.recommendation__card {
+  display: flex;
+  gap: 1rem;
+  border-radius: 0.8rem;
+  background-color: #f0f4f5;
+  height: 12rem;
+
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+}
+
+.recommendation__img {
+  width: 100%;
+  max-width: 12rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.8rem 0 0 0.8rem;
+  }
+}
+
+.recommendation__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #131e22;
+  }
+
+  p {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #131e22;
+  }
+}

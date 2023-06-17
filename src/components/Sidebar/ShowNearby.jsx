@@ -1,51 +1,81 @@
-import { useState } from 'react'
 import classes from './ShowNearby.module.scss'
-import {
-  Bed,
-  Mountains,
-  ForkKnife,
-  BeerBottle,
-  Toilet,
-} from '@phosphor-icons/react'
 
-const marginLeftStyle = {
-  marginLeft: '1rem',
-}
-
-// eslint-disable-next-line react/prop-types
-const SidebarButton = ({ text, icon }) => {
-  const [active, setActive] = useState(false)
-
-  const toggleActive = () => {
-    setActive(!active)
-    console.log(active)
-  }
-
-  return (
-    <button
-      className={classes[active ? 'filters__btn--active' : 'filters__btn']}
-      onClick={toggleActive}
-    >
-      <div className={classes['filters__btn-text']}>
-        {icon && <icon style={marginLeftStyle} size={24} color="#333333c9" />}
-
-        <span>{text}</span>
-      </div>
-    </button>
-  )
-}
+import RadiusInput from './RadiusInput'
+import Select from 'react-select'
+import useRushStore from '../../store/rushStore'
 
 const ShowNearby = () => {
+  const setRushParams = useRushStore((state) => state.setRushParams)
+  const setRushMode = useRushStore((state) => state.setRushMode)
+
+  const options = [
+    { value: 'accommodation.hotel', label: 'Accomodations' },
+    { value: 'public_transport.bus', label: 'Bus stop' },
+    { value: 'amenity.drinking_water', label: 'Drinking water' },
+    { value: 'amenity.toilet', label: 'Toilets' },
+    { value: 'commercial.gas', label: 'Petrol pump' },
+  ]
+
   return (
     <div className={classes['showNearby']}>
-      <div className={classes.heading}>Show nearby</div>
+      <div className={classes.heading}>Show places nearby</div>
       <div className={classes['filters']}>
-        <SidebarButton text="Accomodations" icon={Bed} />
-        <SidebarButton text="Destinations" icon={Mountains} />
-        <SidebarButton text="Restaurants" icon={ForkKnife} />
-        <SidebarButton text="Drinking water" icon={BeerBottle} />
-        <SidebarButton text="Toilets" icon={Toilet} />
+        <Select
+          id="select"
+          defaultValue={options[1]}
+          onChange={(e) => {
+            setRushParams(e.value)
+            setRushMode(true)
+          }}
+          options={options}
+          styles={{
+            control: (provided, state) => ({
+              ...provided,
+              width: '100%',
+              height: '4.5rem',
+              padding: '0 1.5rem',
+              borderRadius: '1rem',
+              fontSize: '1.6rem',
+              fontWeight: '500',
+              color: '#131e22',
+              backgroundColor: '#f0f4f5',
+              border: state.isFocused
+                ? '2px solid #131e22'
+                : '2px solid transparent',
+              boxShadow: 'none',
+              '&:hover': {
+                border: state.isFocused
+                  ? '2px solid #131e22'
+                  : '2px solid #999',
+              },
+            }),
+            option: (provided, state) => ({
+              ...provided,
+              display: 'flex',
+              alignItems: 'center',
+              fontSize: '1.6rem',
+              fontWeight: '500',
+              color: '#131e22',
+              backgroundColor: state.isFocused ? '#f0f4f5' : '#fff',
+              '&:hover': {
+                backgroundColor: '#f0f4f5',
+              },
+            }),
+            dropdownIndicator: (provided) => ({
+              ...provided,
+              color: '#444C4D',
+              '&:hover': {
+                color: '#444c4d',
+              },
+            }),
+            indicatorSeparator: () => ({
+              display: 'none',
+            }),
+          }}
+        />
       </div>
+      <div className={classes.heading}>Within radius (in metre)</div>
+      <RadiusInput />
     </div>
   )
 }

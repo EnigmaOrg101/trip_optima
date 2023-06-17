@@ -1,0 +1,25 @@
+form {
+  .input {
+    all: unset;
+    width: 93%;
+    height: 4.5rem;
+    padding: 0 1.7rem;
+    border-radius: 1rem;
+
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #131e22;
+    background-color: #f0f4f5;
+    position: relative;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &::placeholder {
+      color: #333333b9;
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,47 +1,92 @@
 [
   {
-    "name": "Mbush Games",
-    "latitude": 27.7037129,
-    "longitude": 85.3320931
+    "name": "Kathmandu Durbar Square",
+    "latitude": 27.7042737,
+    "longitude": 85.307463,
+    "ratings": 4.5,
+    "no_of_reviews": 29680,
+    "category": "Plaza",
+    "description": "Historic royal complex with a courtyard",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipPyv3d7WtU3tX7DIwlTT_n2qqNEfDoo2vDE2-KH=w1200-h1200-k-no"
   },
   {
-    "name": "The Colosseum Gaming Zone",
-    "latitude": 27.6984428,
-    "longitude": 85.341441
+    "name": "Swoyambhu Mahachaitya",
+    "latitude": 27.7148996,
+    "longitude": 85.2903957,
+    "ratings": 4.6,
+    "no_of_reviews": 14675,
+    "category": "Tourist attraction",
+    "description": "·",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipPdB4bluHLwD7FFk4g4nY2RdDbFCc0mgxs4Ee09=w1200-h1200-k-no"
   },
   {
-    "name": "Unreal Game Station",
-    "latitude": 27.6921304,
-    "longitude": 85.3362962
+    "name": "Garden of Dreams",
+    "latitude": 27.7141261,
+    "longitude": 85.3145041,
+    "ratings": 4.2,
+    "no_of_reviews": 10669,
+    "category": "Tourist attraction",
+    "description": "·",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipPBQjQmlecutMBTHp79DveB63fizSCwpKQ9P0rd=w1200-h1200-k-no"
   },
   {
-    "name": "Gaming Zone",
-    "latitude": 27.690853,
-    "longitude": 85.33742
+    "name": "Patan Darbar Square",
+    "latitude": 27.6726981,
+    "longitude": 85.3253211,
+    "ratings": 4.6,
+    "no_of_reviews": 25690,
+    "category": "Tourist attraction",
+    "description": "Collection of Hindu & Buddhist sculpture",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipNcHvhs0kjQCizhzL_DZuni04eQOrYPqGEzP2mS=w1200-h1200-k-no"
   },
   {
-    "name": "Cyber Park Game Zone",
-    "latitude": 27.7041448,
-    "longitude": 85.3203292
+    "name": "Hanuman Dhoka",
+    "latitude": 27.704272,
+    "longitude": 85.307417,
+    "ratings": 4.5,
+    "no_of_reviews": 950,
+    "category": "Tourist attraction",
+    "description": "·",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipMBqjTVXVqcMCap8PWWqV0WvD_RE7-eOGvHvT4b=w1200-h1200-k-no"
   },
   {
-    "name": "Civil bowling & game zone",
-    "latitude": 27.6992699,
-    "longitude": 85.3125957
+    "name": "Buddha Stupa",
+    "latitude": 27.7214694,
+    "longitude": 85.362035,
+    "ratings": 4.7,
+    "no_of_reviews": 13129,
+    "category": "Tourist attraction",
+    "description": "Huge, dome-topped Buddhist temple",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipNlESw14fp4CMcfzEFMHdY-dyg8vrm_PumhDcHq=w1200-h1200-k-no"
   },
   {
-    "name": "M.N. VIideo Game Parlour",
-    "latitude": 27.7001974,
-    "longitude": 85.2999057
+    "name": "Kathmandu Valley",
+    "latitude": 27.6666667,
+    "longitude": 85.35,
+    "ratings": 4.4,
+    "no_of_reviews": 508,
+    "category": "Ravine",
+    "description": "Famed area with 130+ historic monuments",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipPYrpjpKAK_HVERTzbSe2DHPIEHPThnu570aYWx=w1200-h1200-k-no"
   },
   {
-    "name": "Jackpot Video Game Parlour",
-    "latitude": 27.7223211,
-    "longitude": 85.3460343
+    "name": "Narayanhiti Palace Museum",
+    "latitude": 27.7149634,
+    "longitude": 85.3183285,
+    "ratings": 4.4,
+    "no_of_reviews": 4282,
+    "category": "Historical place museum",
+    "description": "·",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipMVuoHCIQaVTgzVSMBPiAuAyQ2qyo1COMTQnEZk=w1200-h1200-k-no"
   },
   {
-    "name": "The Hive Sports Club and Pub",
-    "latitude": 27.738879,
-    "longitude": 85.3383643
+    "name": "Kopan Monastery",
+    "latitude": 27.7426594,
+    "longitude": 85.3649135,
+    "ratings": 4.4,
+    "no_of_reviews": 1108,
+    "category": "Research institute",
+    "description": "·",
+    "small_photo": "https://lh5.googleusercontent.com/p/AF1QipPOhWMv2kqjZ_JjL5nS_9G6x8aEltlMyNn64nUL=w1200-h1200-k-no"
   }
 ]
