@@ -4,15 +4,28 @@ import SidebarInputLocation from './SidebarInputLocation'
 import SidebarRouteOptions from './SidebarRouteOptions'
 import SidebarSelect from './SidebarSelect'
 import SidebarLocationOptions from './SidebarLocationOptions'
+import ShowNearby from './ShowNearby'
+import ProspectMode from '../ProspectMode/ProspectMode'
+import useSidebarStore from '../../store/sidebarStore'
+import Rush from '../Rush/Rush'
 
 const Sidebar = () => {
+  const sidebarMode = useSidebarStore((state) => state.sidebarMode)
+
   return (
     <aside className={classes.sidebar}>
       <SidebarHeader />
-      <SidebarInputLocation />
-      <SidebarSelect />
-      <SidebarRouteOptions />
-      <SidebarLocationOptions />
+      {sidebarMode === 'Location' && (
+        <>
+          <SidebarInputLocation />
+          <SidebarSelect />
+          <SidebarRouteOptions />
+          <SidebarLocationOptions />
+          <ShowNearby />
+        </>
+      )}
+      {sidebarMode === 'Rush' && <Rush />}
+      {sidebarMode === 'Prospect' && <ProspectMode />}
     </aside>
   )
 }

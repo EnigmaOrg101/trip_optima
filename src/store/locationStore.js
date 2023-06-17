@@ -27,6 +27,10 @@ const useLocationStore = create((set) => ({
 
   avoidHighways: false,
   setAvoidHighways: (avoidHighways) => set({ avoidHighways: avoidHighways }),
+
+  disruptiveWeather: false,
+  setDisruptiveWeather: (disruptiveWeather) =>
+    set({ disruptiveWeather: disruptiveWeather }),
 }))
 
 export default useLocationStore

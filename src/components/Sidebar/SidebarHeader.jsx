@@ -1,7 +1,10 @@
 import classes from './SidebarHeader.module.scss'
 import SwitchSelector from 'react-switch-selector'
+import useSidebarStore from '../../store/sidebarStore'
 
 const SidebarHeader = () => {
+  const setSidebarMode = useSidebarStore((state) => state.setSidebarMode)
+
   const options = [
     {
       label: 'Location',
@@ -12,13 +15,13 @@ const SidebarHeader = () => {
       value: 'Rush',
     },
     {
-      label: 'Explore',
-      value: 'Explore',
+      label: 'Prospect',
+      value: 'Prospect',
     },
   ]
 
   const onChange = (newValue) => {
-    console.log(newValue)
+    setSidebarMode(newValue)
   }
 
   return (
