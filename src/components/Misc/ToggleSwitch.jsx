@@ -1,5 +1,6 @@
 import classes from './ToggleSwitch.module.scss'
 
+// eslint-disable-next-line react/prop-types
 const ToggleSwitch = ({ onClick }) => {
   const onClickHandler = () => {
     onClick()

@@ -18,6 +18,15 @@ const useLocationStore = create((set) => ({
 
   duration: null,
   setDuration: (duration) => set({ duration: duration }),
+
+  routeMode: 'balanced',
+  setRouteMode: (routeMode) => set({ routeMode: routeMode }),
+
+  avoidTolls: false,
+  setAvoidTolls: (avoidTolls) => set({ avoidTolls: avoidTolls }),
+
+  avoidHighways: false,
+  setAvoidHighways: (avoidHighways) => set({ avoidHighways: avoidHighways }),
 }))
 
 export default useLocationStore
