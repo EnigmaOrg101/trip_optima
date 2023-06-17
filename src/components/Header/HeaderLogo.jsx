@@ -5,7 +5,7 @@ const HeaderLogo = () => {
   return (
     <div className={classes.header__logo}>
       <div className={classes['header__logo-text']}>
-        Trip<span>Optima</span>
+        {/* Trip<span>Optima</span> */}
         <Path
           style={{
             display: 'inline-block',
