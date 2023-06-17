@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+
+  @media only screen and (max-width: 70.25em) {
+    font-size: 54%;
+  }
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+svg {
+  pointer-events: none;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100svh;
+}
+
+body {
+  font-family: 'Eudoxus Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}

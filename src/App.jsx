@@ -8,9 +8,7 @@ function App() {
   return (
     <>
       <div className={classes.App}>
-        <div className={classes.App__up}>
-          <Header />
-        </div>
+        <Header />
         <div className={classes.App__down}>
           <Sidebar />
           <MapLayout />
