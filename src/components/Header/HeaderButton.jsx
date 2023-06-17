@@ -1,21 +1,21 @@
 import classes from './HeaderButton.module.scss'
-// import { CaretRight } from "@phosphor-icons/react"
-import { Bell, Heart } from '@phosphor-icons/react'
+import { CaretDown, MapTrifold } from '@phosphor-icons/react'
 
 const HeaderButton = () => {
   return (
     <>
       <div className={classes.header__user}>
         <button className={classes.header__iconbtn}>
-          <Bell
+          <MapTrifold
             className={classes['header__button-icon']}
             color="#131e24"
             size={26}
           />
-          <Heart
+          <CaretDown
             className={classes['header__button-icon']}
             color="#131e24"
-            size={26}
+            size={15}
+            weight='bold'
           />
         </button>
 
