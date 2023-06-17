@@ -23,7 +23,7 @@ const HeaderButton = () => {
             weight="bold"
           />
         </button>
-        <button className={classes.header__iconbtn}>
+        {/* <button className={classes.header__iconbtn}>
           <GlobeHemisphereEast
             className={classes['header__button-icon']}
             color="#131e24"
@@ -36,7 +36,7 @@ const HeaderButton = () => {
             weight="bold"
             style={{ marginLeft: '2px' }}
           />
-        </button>
+        </button> */}
 
         <div className={classes['header__user-pfp']}>
           <img src="./pfp.jpg" alt="user" />
