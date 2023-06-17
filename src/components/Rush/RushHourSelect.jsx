@@ -1,22 +1,25 @@
 import classes from './RushHourSelect.module.scss'
 import Select from 'react-select'
+import useRushStore from '../../store/rushStore'
 
 const RushHourSelect = () => {
+  const setRushRadius = useRushStore((state) => state.setRushRadius)
+
   const options = [
     {
-      value: '2',
+      value: '2000',
       label: '2 hours',
     },
     {
-      value: '4',
+      value: '4000',
       label: '4 hours',
     },
     {
-      value: '6',
+      value: '8000',
       label: '6 hours',
     },
     {
-      value: '8',
+      value: '12000',
       label: '8 hours',
     },
   ]
@@ -26,7 +29,7 @@ const RushHourSelect = () => {
       <label htmlFor="select">Allocate hours</label>
       <Select
         defaultValue={options[1]}
-        onChange={(e) => console.log(e)}
+        onChange={(e) => setRushRadius(e.value)}
         options={options}
         styles={{
           control: (provided, state) => ({

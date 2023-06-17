@@ -8,10 +8,13 @@ import MapButtons from './MapButtons'
 import useLocationStore from '../../store/locationStore'
 import useMarkerStore from '../../store/markerStore'
 import useMapStore from '../../store/mapStore'
+import useRushStore from '../../store/rushStore'
 import MapInfo from './MapInfo'
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoibWFqaWhvIiwiYSI6ImNsaWg1ZmEyNTBxZjIzZm1wam51aGZ5YzEifQ.Sk1PZ3TrFEMIxSC4I9DBdA'
+
+const GEOAPIFY_API_KEY = '70982f5ded674a84abaa673ee6b6d2c7'
 
 const MapLayout = () => {
   const mapRef = useRef(null)
@@ -19,6 +22,8 @@ const MapLayout = () => {
   const setCurrentLocation = useLocationStore(
     (state) => state.setCurrentLocation
   )
+
+  const currentLocation = useLocationStore((state) => state.currentLocation)
 
   const setDestinationLocation = useLocationStore(
     (state) => state.setDestinationLocation
@@ -34,8 +39,11 @@ const MapLayout = () => {
 
   const mapStyle = useMapStore((state) => state.mapStyle)
 
+  const rushMode = useRushStore((state) => state.rushMode)
+
+  const rushRadius = useRushStore((state) => state.rushRadius)
+
   useEffect(() => {
-    // on mount get current location
     navigator.geolocation.watchPosition((success) => {
       const { latitude, longitude } = success.coords
       setLngLat([longitude, latitude])
@@ -46,6 +54,51 @@ const MapLayout = () => {
         alert('Please allow location access')
       }
   }, [])
+
+  useEffect(() => {
+    if (rushMode) {
+      fetch(
+        `https://api.geoapify.com/v1/isoline?lat=${currentLocation[1]}&lon=${currentLocation[0]}&type=distance&mode=drive&range=${rushRadius}&apiKey=${GEOAPIFY_API_KEY}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+          if (mapRef?.current?.getMap().getLayer('isoline-line')) {
+            mapRef?.current?.getMap().removeLayer('isoline-line')
+          }
+          if (mapRef?.current?.getMap().getLayer('isoline-fill')) {
+            mapRef?.current?.getMap().removeLayer('isoline-fill')
+          }
+          if (mapRef?.current?.getMap().getSource('isoline-data-source')) {
+            mapRef?.current?.getMap().removeSource('isoline-data-source')
+          }
+          mapRef?.current.getMap().addSource('isoline-data-source', {
+            type: 'geojson',
+            data: data,
+          })
+          // add layer of radius circle
+          mapRef?.current.getMap().addLayer({
+            id: 'isoline-line',
+            type: 'line',
+            source: 'isoline-data-source',
+            paint: {
+              'line-color': '#6666ff',
+              'line-width': 2,
+            },
+          })
+          mapRef?.current.getMap().addLayer({
+            id: `isoline-fill`,
+            type: 'fill',
+            source: 'isoline-data-source',
+            paint: {
+              'fill-color': '#6666ff',
+              'fill-opacity': 0.3,
+            },
+          })
+        })
+        .catch((err) => console.log(err))
+    }
+  }, [rushMode, rushRadius])
 
   return (
     <div className={classes.map}>
@@ -93,6 +146,7 @@ const MapLayout = () => {
               .then((data) => {
                 setDestinationAddress(data.features[0].properties.formatted)
               })
+              .catch((err) => console.log(err))
             if (marker) {
               marker.remove()
             }

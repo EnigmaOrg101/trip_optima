@@ -1,5 +1,16 @@
+.container {
+  position: fixed;
+
+  z-index: 30;
+  background-color: #131e226a;
+  width: 100vw;
+  height: 100vh;
+}
+
 .prospectMode {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 
   .heading {

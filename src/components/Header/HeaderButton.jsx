@@ -1,10 +1,12 @@
 import classes from './HeaderButton.module.scss'
-import { MapTrifold } from '@phosphor-icons/react'
+import { CloudLightning, MapTrifold } from '@phosphor-icons/react'
 import useMapStore from '../../store/mapStore'
+import useSidebarStore from '../../store/sidebarStore'
 import Select from 'react-select'
 
 const HeaderButton = () => {
   const setMapStyle = useMapStore((state) => state.setMapStyle)
+  const setShowProspect = useSidebarStore((state) => state.setShowProspect)
 
   const options = [
     {
@@ -32,6 +34,16 @@ const HeaderButton = () => {
   return (
     <>
       <div className={classes.header__user}>
+        <button
+          onClick={() => setShowProspect(true)}
+          className={classes.header__button}
+        >
+          <CloudLightning
+            className={classes['header__button-icon']}
+            color="#131e24"
+            size={26}
+          />
+        </button>
         <div className={classes.header__select}>
           <MapTrifold
             className={classes['header__button-icon']}

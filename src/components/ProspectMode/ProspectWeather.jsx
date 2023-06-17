@@ -132,10 +132,17 @@ const ProspectWeather = () => {
         <div
           className={classes.prospectMode__disruptiveWeather}
           style={{
-            backgroundColor: 'lightgreen',
+            backgroundColor: 'limegreen',
           }}
         >
-          There are no potential hindrances along your journey.
+          <WarningCircle
+            size={40}
+            style={{
+              display: 'inline-block',
+              verticalAlign: 'middle',
+            }}
+          />
+          There are no disruptive weather conditions on your journey.
         </div>
       )}
     </div>

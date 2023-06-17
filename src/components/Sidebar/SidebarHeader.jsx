@@ -15,8 +15,8 @@ const SidebarHeader = () => {
       value: 'Rush',
     },
     {
-      label: 'Prospect',
-      value: 'Prospect',
+      label: 'Recommend',
+      value: 'Recommend',
     },
   ]
 

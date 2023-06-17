@@ -7,10 +7,14 @@ import MapLayout from './components/Map/Map'
 import { IconContext } from '@phosphor-icons/react'
 import { MapProvider } from 'react-map-gl'
 import { GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
+import useSidebarStore from './store/sidebarStore'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
+import ProspectMode from './components/ProspectMode/ProspectMode'
 
 function App() {
+  const showProspect = useSidebarStore((state) => state.showProspect)
+
   return (
     <>
       <GeoapifyContext apiKey="70982f5ded674a84abaa673ee6b6d2c7">
@@ -20,6 +24,7 @@ function App() {
               color: '#333',
             }}
           >
+            {showProspect && <ProspectMode />}
             <div className={classes.App}>
               <div className={classes.App__up}>
                 <Header />
