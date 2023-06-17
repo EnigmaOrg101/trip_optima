@@ -1,3 +1,9 @@
-.App {
-    
+App {
+  display: flex;
+  flex-direction: column;
+
+  &__down {
+    display: flex;
+    flex: 1;
+  }
 }

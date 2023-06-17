@@ -1,11 +1,7 @@
-import classes from "./Header.module.scss";
+import classes from './Header.module.scss'
 
 const Header = () => {
-  return (
-    <div>
-      <h1 className={classes.header}>Header</h1>
-    </div>
-  );
-};
+  return <header className={classes.header}>Header</header>
+}
 
-export default Header;
+export default Header

@@ -1,3 +1,13 @@
 .sidebar {
-    
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+
+  width: 45rem;
+
+  padding: 3rem 2rem 3rem 4rem;
+
+  height: calc(100vh - 9rem);
+
+  overflow-y: auto;
 }

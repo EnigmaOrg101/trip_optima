@@ -1,7 +1,7 @@
-import classes from "./Map.module.scss";
+import classes from './Map.module.scss'
 
 const MapLayout = () => {
-  return <div className={classes.map}>Map</div>;
-};
+  return <div className={classes.map}>Map</div>
+}
 
-export default MapLayout;
+export default MapLayout

@@ -1,8 +1,8 @@
-import classes from "./App.module.scss";
+import classes from './App.module.scss'
 
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import MapLayout from "./components/Map/Map";
+import Header from './components/Header/Header'
+import Sidebar from './components/Sidebar/Sidebar'
+import MapLayout from './components/Map/Map'
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,7 +1,7 @@
-import classes from "./Sidebar.module.scss";
+import classes from './Sidebar.module.scss'
 
 const Sidebar = () => {
-  return <div className={classes.sidebar}>Sidebar</div>;
-};
+  return <aside className={classes.sidebar}>Sidebar</aside>
+}
 
-export default Sidebar;
+export default Sidebar
