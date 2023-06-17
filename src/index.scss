@@ -10,7 +10,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 56.5%;
 
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -68,6 +68,16 @@ body {
 }
 
 // style overrides for geoapify autocomplete
+
+.geoapify-autocomplete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Eudoxus Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #333;
+}
 
 .geoapify-autocomplete-items {
   position: absolute;

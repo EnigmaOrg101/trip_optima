@@ -1,7 +1,7 @@
 import classes from './HeaderButton.module.scss'
 import {
   CaretDown,
-  GlobeHemisphereEast,
+  //   GlobeHemisphereEast,
   MapTrifold,
 } from '@phosphor-icons/react'
 
