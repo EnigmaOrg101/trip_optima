@@ -40,7 +40,12 @@ const HeaderSearch = () => {
   }
 
   return (
-    <form className={classes.header__search}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+      }}
+      className={classes.header__search}
+    >
       <MagnifyingGlass color="#333333b9" size={24} />
       <GeoapifyGeocoderAutocomplete
         filterByCountryCode={['np']}
