@@ -5,6 +5,8 @@ import mapboxgl from 'mapbox-gl'
 import classes from './Map.module.scss'
 import MapButtons from './MapButtons'
 
+import useMarkerStore from '../../store/markerStore'
+
 mapboxgl.accessToken =
   'pk.eyJ1IjoibWFqaWhvIiwiYSI6ImNsaWg1ZmEyNTBxZjIzZm1wam51aGZ5YzEifQ.Sk1PZ3TrFEMIxSC4I9DBdA'
 
@@ -12,8 +14,11 @@ const MapLayout = () => {
   const mapRef = useRef(null)
   const [lnglat, setLngLat] = useState(null)
 
+  const setMarker = useMarkerStore((state) => state.setMarker)
+
+  const marker = useMarkerStore((state) => state.marker)
+
   useEffect(() => {
-    // fetch current location coords
     navigator.geolocation.watchPosition((success) => {
       const { latitude, longitude } = success.coords
       setLngLat([longitude, latitude])
@@ -60,6 +65,18 @@ const MapLayout = () => {
           onClick={(e) => {
             const { lng, lat } = e.lngLat
             console.log(lng, lat)
+
+            if (marker) {
+              marker.remove()
+            }
+
+            const newMarker = new mapboxgl.Marker({
+              draggable: true,
+            })
+              .setLngLat([lng, lat])
+              .addTo(mapRef.current.getMap())
+
+            setMarker(newMarker)
           }}
         >
           <MapButtons />

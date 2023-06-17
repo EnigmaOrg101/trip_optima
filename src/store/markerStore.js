@@ -1,11 +1,11 @@
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
 
 const useMarkerStore = create((set) => ({
   marker: null,
   setMarker: (marker) => set({ marker: marker }),
+
+  searchMarker: null,
+  setSearchMarker: (marker) => set({ searchMarker: marker }),
 }))
 
-export default create(
-  devtools(persist(useMarkerStore, { name: 'marker-store' }))
-)
+export default useMarkerStore
