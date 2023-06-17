@@ -12,6 +12,7 @@
   "dependencies": {
     "@geoapify/react-geocoder-autocomplete": "^1.5.0",
     "@phosphor-icons/react": "^2.0.10",
+    "framer-motion": "^10.12.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.0.25",

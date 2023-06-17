@@ -8,6 +8,7 @@ import MapButtons from './MapButtons'
 import useLocationStore from '../../store/locationStore'
 import useMarkerStore from '../../store/markerStore'
 import useMapStore from '../../store/mapStore'
+import MapInfo from './MapInfo'
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoibWFqaWhvIiwiYSI6ImNsaWg1ZmEyNTBxZjIzZm1wam51aGZ5YzEifQ.Sk1PZ3TrFEMIxSC4I9DBdA'
@@ -104,6 +105,7 @@ const MapLayout = () => {
           }}
         >
           <MapButtons />
+          <MapInfo />
         </MapGL>
       )}
     </div>
