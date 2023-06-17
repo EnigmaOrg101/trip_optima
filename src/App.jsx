@@ -6,29 +6,32 @@ import MapLayout from './components/Map/Map'
 
 import { IconContext } from '@phosphor-icons/react'
 import { MapProvider } from 'react-map-gl'
+import { GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 function App() {
   return (
     <>
-      <MapProvider>
-        <IconContext.Provider
-          value={{
-            color: '#333',
-          }}
-        >
-          <div className={classes.App}>
-            <div className={classes.App__up}>
-              <Header />
+      <GeoapifyContext apiKey="70982f5ded674a84abaa673ee6b6d2c7">
+        <MapProvider>
+          <IconContext.Provider
+            value={{
+              color: '#333',
+            }}
+          >
+            <div className={classes.App}>
+              <div className={classes.App__up}>
+                <Header />
+              </div>
+              <div className={classes.App__down}>
+                <Sidebar />
+                <MapLayout />
+              </div>
             </div>
-            <div className={classes.App__down}>
-              <Sidebar />
-              <MapLayout />
-            </div>
-          </div>
-        </IconContext.Provider>
-      </MapProvider>
+          </IconContext.Provider>
+        </MapProvider>
+      </GeoapifyContext>
     </>
   )
 }

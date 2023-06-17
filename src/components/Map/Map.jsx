@@ -5,6 +5,7 @@ import mapboxgl from 'mapbox-gl'
 import classes from './Map.module.scss'
 import MapButtons from './MapButtons'
 
+import useLocationStore from '../../store/locationStore'
 import useMarkerStore from '../../store/markerStore'
 
 mapboxgl.accessToken =
@@ -13,15 +14,28 @@ mapboxgl.accessToken =
 const MapLayout = () => {
   const mapRef = useRef(null)
   const [lnglat, setLngLat] = useState(null)
+  const setCurrentLocation = useLocationStore(
+    (state) => state.setCurrentLocation
+  )
+
+  const setDestinationLocation = useLocationStore(
+    (state) => state.setDestinationLocation
+  )
+
+  const setDestinationAddress = useLocationStore(
+    (state) => state.setDestinationAddress
+  )
 
   const setMarker = useMarkerStore((state) => state.setMarker)
 
   const marker = useMarkerStore((state) => state.marker)
 
   useEffect(() => {
+    // on mount get current location
     navigator.geolocation.watchPosition((success) => {
       const { latitude, longitude } = success.coords
       setLngLat([longitude, latitude])
+      setCurrentLocation([longitude, latitude])
     }),
       (error) => {
         console.log(error)
@@ -65,14 +79,20 @@ const MapLayout = () => {
           onClick={(e) => {
             const { lng, lat } = e.lngLat
             console.log(lng, lat)
-
+            setDestinationLocation([lng, lat])
+            // convert lnglat to address
+            fetch(
+              `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=70982f5ded674a84abaa673ee6b6d2c7`
+            )
+              .then((res) => res.json())
+              .then((data) => {
+                setDestinationAddress(data.features[0].properties.formatted)
+              })
             if (marker) {
               marker.remove()
             }
 
-            const newMarker = new mapboxgl.Marker({
-              draggable: true,
-            })
+            const newMarker = new mapboxgl.Marker({})
               .setLngLat([lng, lat])
               .addTo(mapRef.current.getMap())
 
