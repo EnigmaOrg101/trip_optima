@@ -42,6 +42,18 @@ const SidebarInputLocation = () => {
     (state) => state.destinationLocation
   )
 
+  const travelMode = useLocationStore((state) => state.travelMode)
+
+  const routeMode = useLocationStore((state) => state.routeMode)
+
+  const avoidHighways = useLocationStore((state) => state.avoidHighways)
+
+  const avoidTolls = useLocationStore((state) => state.avoidTolls)
+
+  const setDistance = useLocationStore((state) => state.setDistance)
+
+  const setDuration = useLocationStore((state) => state.setDuration)
+
   const sourcePlaceSelect = (result) => {
     if (result) {
       const { lat, lon: lng } = result.properties
@@ -81,21 +93,95 @@ const SidebarInputLocation = () => {
     setInputActivated(!inputActivated)
   }
 
-  const showRoute = () => {
-    fetch(
-      `https://api.geoapify.com/v1/routing?waypoints=lonlat:${
-        (currentLocation[1], currentLocation[0])
-      }|${
-        (destinationLocation[1], destinationLocation[0])
-      }&format=json&mode=drive&apiKey=${GEOAPIFY_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => console.log(data))
+  const showRoute = async () => {
+    try {
+      const response = await fetch(
+        `https://api.geoapify.com/v1/routing?waypoints=${currentLocation[1]},${
+          currentLocation[0]
+        }|${destinationLocation[1]},${destinationLocation[0]}&mode=${
+          travelMode.api
+        }&apiKey=${GEOAPIFY_API_KEY}&type=${routeMode}${
+          avoidHighways ? '&avoid=highways' : ''
+        }${avoidTolls ? '&avoid=tolls' : ''}&distance&format=geojson`
+      )
+      const response_json = await fetch(
+        `https://api.geoapify.com/v1/routing?waypoints=${currentLocation[1]},${
+          currentLocation[0]
+        }|${destinationLocation[1]},${destinationLocation[0]}&mode=${
+          travelMode.api
+        }&apiKey=${GEOAPIFY_API_KEY}&type=${routeMode}${
+          avoidHighways ? '&avoid=highways' : ''
+        }${avoidTolls ? '&avoid=tolls' : ''}&distance&format=json`
+      )
+      const data = await response.json()
+      console.log(data)
+
+      const data_json = await response_json.json()
+
+      const distance = data_json.results[0].distance
+      const distanceInKm = (distance / 1000).toFixed(2)
+
+      const duration = data_json.results[0].time
+
+      const hours = Math.floor(duration / 3600)
+      const minutes = Math.floor((duration % 3600) / 60)
+
+      let formattedDuration = ''
+
+      if (hours > 0) {
+        formattedDuration += `${hours}hr `
+      }
+
+      formattedDuration += `${minutes}min`
+
+      setDistance(distanceInKm)
+      setDuration(formattedDuration)
+
+      if (!data) return
+
+      if (map.getMap().getLayer('route')) {
+        map.getMap().removeLayer('route')
+      }
+
+      if (map.getMap().getSource('route')) {
+        map.getMap().removeSource('route')
+      }
+
+      map.getMap().addSource('route', {
+        type: 'geojson',
+        data: data,
+      })
+
+      map.getMap().addLayer({
+        id: 'route',
+        type: 'line',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round',
+        },
+        paint: {
+          'line-color': '#0074D9',
+          'line-opacity': 0.7,
+          'line-width': 7,
+        },
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
     if (currentLocation && destinationLocation) showRoute()
-  }, [currentLocation, destinationLocation])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    currentLocation,
+    destinationLocation,
+    travelMode,
+    routeMode,
+    avoidTolls,
+    avoidHighways,
+  ])
 
   return (
     <div className={classes['sidebar__input-location']}>
