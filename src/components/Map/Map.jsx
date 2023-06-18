@@ -45,6 +45,8 @@ const MapLayout = () => {
 
   const rushParams = useRushStore((state) => state.rushParams)
 
+  const alertMode = useLocationStore((state) => state.alertMode)
+
   useEffect(() => {
     navigator.geolocation.watchPosition((success) => {
       const { latitude, longitude } = success.coords
@@ -123,6 +125,53 @@ const MapLayout = () => {
         .catch((err) => console.log(err))
     }
   }, [rushMode, rushRadius, rushParams])
+
+  useEffect(() => {
+    if (alertMode) {
+      console.log('hi')
+      mapRef?.current.getMap().addSource('maine', {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          geometry: {
+            type: 'Polygon',
+            // These coordinates outline Maine.
+            coordinates: [
+              [
+                [84.43679556196999, 27.690794392889643],
+                [84.44449922049233, 27.6909359144872],
+                [84.44446725510272, 27.683010422528568],
+                [84.43606035803407, 27.684227589037974],
+              ],
+            ],
+          },
+        },
+      })
+
+      // Add a new layer to visualize the polygon.
+      mapRef?.current.getMap().addLayer({
+        id: 'maine',
+        type: 'fill',
+        source: 'maine', // reference the data source
+        layout: {},
+        paint: {
+          'fill-color': '#f00', // red color fill
+          'fill-opacity': 0.5,
+        },
+      })
+      // Add a black outline around the polygon.
+      mapRef?.current.getMap().addLayer({
+        id: 'outline',
+        type: 'line',
+        source: 'maine',
+        layout: {},
+        paint: {
+          'line-color': '#333',
+          'line-width': 2,
+        },
+      })
+    }
+  }, [alertMode])
 
   return (
     <div className={classes.map}>

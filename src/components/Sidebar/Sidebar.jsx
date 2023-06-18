@@ -8,6 +8,7 @@ import ShowNearby from './ShowNearby'
 import useSidebarStore from '../../store/sidebarStore'
 import Rush from '../Rush/Rush'
 import Recommendation from '../Recommendation/Recommendation'
+import SidebarAlerts from './SidebarAlerts'
 
 const Sidebar = () => {
   const sidebarMode = useSidebarStore((state) => state.sidebarMode)
@@ -24,8 +25,9 @@ const Sidebar = () => {
           <ShowNearby />
         </>
       )}
-      {sidebarMode === 'Rush' && <Rush />}
+      {sidebarMode === 'Tour' && <Rush />}
       {sidebarMode === 'Recommend' && <Recommendation />}
+      {sidebarMode === 'Explore' && <SidebarAlerts />}
     </aside>
   )
 }

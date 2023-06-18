@@ -3,6 +3,13 @@
   flex-direction: column;
   gap: 1.5rem;
 
+  .heading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #131e22;
+    letter-spacing: -0.01rem;
+  }
+
   h1 {
     font-size: 1.6rem;
     font-weight: 600;
@@ -17,6 +24,7 @@
   border-radius: 0.8rem;
   background-color: #f0f4f5;
   height: 12rem;
+  font-size: 1.4rem;
 
   &:not(:first-child) {
     margin-top: 2rem;

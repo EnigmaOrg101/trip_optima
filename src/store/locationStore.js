@@ -31,6 +31,12 @@ const useLocationStore = create((set) => ({
   disruptiveWeather: false,
   setDisruptiveWeather: (disruptiveWeather) =>
     set({ disruptiveWeather: disruptiveWeather }),
+
+  alertMode: false,
+  setAlertMode: (alertMode) => set({ alertMode: alertMode }),
+
+  reroute: false,
+  setReroute: (reroute) => set({ reroute: reroute }),
 }))
 
 export default useLocationStore

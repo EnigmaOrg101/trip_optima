@@ -9,6 +9,12 @@ const useRushStore = create((set) => ({
 
   rushParams: null,
   setRushParams: (rushParams) => set({ rushParams }),
+
+  rushType: 'short',
+  setRushType: (rushType) => set({ rushType }),
+
+  alertMode: false,
+  setAlertMode: (alertMode) => set({ alertMode }),
 }))
 
 export default useRushStore
