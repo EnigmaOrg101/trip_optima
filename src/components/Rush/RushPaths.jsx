@@ -1,45 +1,38 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import classes from './RushPaths.module.scss'
 import { ArrowsVertical } from '@phosphor-icons/react'
+import { useMap } from 'react-map-gl'
 
 const API_LINK = `https://enigma-fastapi.clouds.nepalicloud.com/calc`
 
-const json = [
-  {
-    lat: 27.717245,
-    lng: 85.323959,
-  },
-  {
-    lat: 27.717245,
-    lng: 85.323959,
-  },
-  {
-    lat: 27.717245,
-    lng: 85.323959,
-  },
-  {
-    lat: 27.717245,
-    lng: 85.323959,
-  },
-]
+import mapboxgl from 'mapbox-gl'
 
 const RushPaths = () => {
-  //   const fetchLocation = () => {
-  //     fetch(API_LINK)
-  //       .then((res) => {
-  //         return res.json()
-  //       })
-  //       .then((data) => {
-  //         console.log(data)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
+  const { map } = useMap()
+  const [json, setJson] = useState([])
 
-  //   useEffect(() => {
-  //     fetchLocation()
-  //   }, [])
+  const fetchLocation = () => {
+    fetch(API_LINK)
+      .then((res) => {
+        return res.json()
+      })
+      .then((data) => {
+        console.log(data)
+        const randomLocations = []
+        for (let i = 0; i < 5; i++) {
+          const randomIndex = Math.floor(Math.random() * data.length)
+          randomLocations.push(data[randomIndex])
+        }
+        setJson(randomLocations)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  useEffect(() => {
+    fetchLocation()
+  }, [])
 
   return (
     <div className={classes.paths}>
@@ -47,9 +40,11 @@ const RushPaths = () => {
         return (
           <div className={classes.path} key={index}>
             <div className={classes.path__info}>
-              <div className={classes.path__name}>Path {index + 1}</div>
-              <div className={classes.path__distance}>Distance: 1.2 km</div>
-              <div className={classes.path__time}>Time: 10 min</div>
+              <div className={classes.path__name}>
+                {index + 1} {item.name}
+              </div>
+              <div className={classes.path__distance}>Lat: {item.latitude}</div>
+              <div className={classes.path__time}>Lon: {item.longitude}</div>
             </div>
             <ArrowsVertical
               size={20}
