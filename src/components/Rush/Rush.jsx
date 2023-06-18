@@ -2,6 +2,7 @@ import classes from './Rush.module.scss'
 import RushButton from './RushButton'
 import RushHourSelect from './RushHourSelect'
 import RushLongShort from './RushLongShort'
+import RushGenerate from './RushGenerate'
 
 const Rush = () => {
   return (
@@ -9,6 +10,7 @@ const Rush = () => {
       <RushLongShort />
       <RushHourSelect />
       <RushButton />
+      <RushGenerate />
     </div>
   )
 }
